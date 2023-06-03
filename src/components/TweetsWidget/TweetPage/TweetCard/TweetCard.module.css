@@ -1,0 +1,91 @@
+.cardWrapper {
+  position: relative;
+  width: 380px;
+  height: 460px;
+  background: linear-gradient(
+    114.99deg,
+    #471ca9 -0.99%,
+    #5736a3 54.28%,
+    #4b2a99 78.99%
+  );
+  box-shadow: -2.5777px 6.87386px 20.6216px rgba(0, 0, 0, 0.23);
+  border-radius: 20px;
+}
+
+.cardLogo {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+}
+
+.cardTweetBackgroundimg {
+  margin-top: 28px;
+  margin-left: 36px;
+  margin-right: 36px;
+}
+
+.cardMiddleBorder {
+  position: relative;
+  height: 8px;
+  margin-top: 18px;
+  background-color: #ebd8ff;
+  box-shadow: 0px 3.43693px 3.43693px rgba(0, 0, 0, 0.06),
+    inset 0px -1.71846px 3.43693px #ae7be3, inset 0px 3.43693px 2.5777px #fbf8ff;
+}
+
+.cardUserPhotoWrapper {
+  position: absolute;
+  width: 80px;
+  height: 80px;
+  background-color: #ebd8ff;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border-radius: 85.9232px;
+}
+
+.cardTweetsCount {
+  font-family: "Montserrat";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 1.2;
+  text-transform: uppercase;
+  color: #ebd8ff;
+}
+
+.cardFollowersCount {
+  font-family: "Montserrat";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 1.2;
+  text-transform: uppercase;
+  color: #ebd8ff;
+}
+
+.cardUserStat {
+  display: flex;
+  margin: 62px 0 26px 0;
+  flex-direction: column;
+  gap: 16px;
+  align-items: center;
+}
+
+.userFollowBtn {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 14px 56px;
+  font-family: "Montserrat";
+  font-style: normal;
+  font-weight: 600;
+  font-size: 18px;
+  line-height: 1.22;
+
+  text-transform: uppercase;
+  border-width: 0;
+  background-color: #ebd8ff;
+  box-shadow: 0px 3.43693px 3.43693px rgba(0, 0, 0, 0.25);
+  border-radius: 10.3108px;
+}
