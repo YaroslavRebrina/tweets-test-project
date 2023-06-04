@@ -4,42 +4,50 @@ import { fetchUsers } from "services/usersAPI";
 
 export const TweetsPage = () => {
   const [users, setUsers] = useState(null);
+  const [isNeedToRefetch, setIsNeedToRefetch] = useState(false);
+
+  // const willFetch =  || isNeedToRefetch;
 
   useEffect(() => {
-    if (users === null) {
+    !users &&
       fetchUsers()
         .then((data) => {
           setUsers(data);
-          return data;
+          setIsNeedToRefetch(false);
+          return;
         })
-        .then((data) =>
-          localStorage.setItem("USERS_LIST", JSON.stringify(data))
-        )
         .catch(console.log);
-    } else if (typeof users === "object") {
-      return;
-    } else {
-      setUsers(JSON.parse(localStorage.getItem("USERS_LIST")));
-    }
   }, [users]);
 
-  const updateUserList = (data) => {
-    setUsers(data);
+  useEffect(() => {
+    isNeedToRefetch &&
+      fetchUsers()
+        .then((data) => {
+          setUsers(data);
+          setIsNeedToRefetch(false);
+          return;
+        })
+        .catch(console.log);
+  }, [isNeedToRefetch]);
+
+  const updateUsers = () => {
+    setIsNeedToRefetch(true);
   };
+
   return (
     <div>
       {users &&
-        users.map(
-          ({ id, tweets, followers, avatar, updateUserListHandler }) => (
-            <TweetCard
-              tweets={tweets}
-              followers={followers}
-              avatar={avatar}
-              updateUserListHandler={updateUserList}
-              key={id}
-            />
-          )
-        )}
+        users.map(({ id, tweets, followers, avatar, isFollowed }) => (
+          <TweetCard
+            tweets={tweets}
+            followers={followers}
+            avatar={avatar}
+            isFollowed={isFollowed}
+            updateUsersHandler={updateUsers}
+            id={id}
+            key={id}
+          />
+        ))}
     </div>
   );
 };

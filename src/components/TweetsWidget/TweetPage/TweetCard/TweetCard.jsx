@@ -1,23 +1,18 @@
 import LogoGoIt from "assets/svg/LogoGoIt";
 import TweetBackgroundCard from "assets/imgs/TweetCardBackground.png";
 import css from "../TweetCard/TweetCard.module.css";
-import { useEffect, useRef, useState } from "react";
+import { followUser, unFollowUser } from "services/usersAPI";
 
-export const TweetCard = ({ tweets, followers, avatar }) => {
-  const [isFollowed, setIsFollowed] = useState(false);
-  const [followersCount, setfollowersCount] = useState(followers);
-
-  const onFollowBtnClick = () => {
-    setIsFollowed(!isFollowed);
-  };
-
-  const onFollow = () => {
-    setIsFollowed(true);
-    setfollowersCount(followersCount + 1);
-  };
-  const onUnfollow = () => {
-    setIsFollowed(false);
-    setfollowersCount(followers);
+export const TweetCard = ({
+  id,
+  tweets,
+  followers,
+  avatar,
+  isFollowed,
+  updateUsersHandler,
+}) => {
+  const updateUsers = () => {
+    updateUsersHandler();
   };
 
   return (
@@ -35,13 +30,16 @@ export const TweetCard = ({ tweets, followers, avatar }) => {
       </div>
       <div className={css.cardUserStat}>
         <p className={css.cardTweetsCount}>{tweets} Tweets</p>
-        <p className={css.cardFollowersCount}>{followersCount} Followers</p>
+        <p className={css.cardFollowersCount}>{followers} Followers</p>
       </div>
-      {isFollowed ? (
+      {isFollowed === true ? (
         <button
           type="button"
           className={css.userFollowBtnActive}
-          onClick={() => onUnfollow()}
+          onClick={async () => {
+            await unFollowUser(id, followers);
+            updateUsers();
+          }}
         >
           Following
         </button>
@@ -49,7 +47,10 @@ export const TweetCard = ({ tweets, followers, avatar }) => {
         <button
           type="button"
           className={css.userFollowBtn}
-          onClick={() => onFollow()}
+          onClick={async () => {
+            await followUser(id, followers);
+            updateUsers();
+          }}
         >
           Follow
         </button>
