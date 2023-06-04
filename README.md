@@ -1,5 +1,5 @@
 Hello this is my "Tweets" test project.
-Technologies used here: React, ModuleCSS, Redux, RTK, RTKQuery, axios
+Technologies used here: React, ModuleCSS, Redux, RTK, RTKQuery, axios, ReactRouter
 
 Bundle created by me + create-react-app
 
