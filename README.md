@@ -1,6 +1,8 @@
 Hello this is my "Tweets" test project.
 Technologies used here: React, ModuleCSS, Redux, RTK, RTKQuery, axios
 
+Bundle created by me + create-react-app
+
 Home page -
 Written by using axios and component lifecycle hooks
 
