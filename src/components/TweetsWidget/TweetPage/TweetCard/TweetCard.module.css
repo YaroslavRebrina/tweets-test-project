@@ -82,12 +82,15 @@
   font-weight: 600;
   font-size: 18px;
   line-height: 1.22;
-
+  scale: 1;
   text-transform: uppercase;
   border-width: 0;
   background-color: #ebd8ff;
   box-shadow: 0px 3.43693px 3.43693px rgba(0, 0, 0, 0.25);
   border-radius: 10.3108px;
+  
+  transition: box-shadow 250ms cubic-bezier(0.075, 0.82, 0.165, 1),
+    scale 250ms cubic-bezier(0.075, 0.82, 0.165, 1);
 }
 
 .userFollowBtnActive {
@@ -106,6 +109,19 @@
   background-color: #5cd3a8;
   box-shadow: 0px 3.43693px 3.43693px rgba(0, 0, 0, 0.25);
   border-radius: 10.3108px;
+  scale: 1;
+  transition: box-shadow 250ms cubic-bezier(0.075, 0.82, 0.165, 1),
+    scale 250ms cubic-bezier(0.075, 0.82, 0.165, 1);
+}
+
+.userFollowBtn:hover,
+.userFollowBtnActive:hover {
+  box-shadow: 0px 9px 9px rgba(0, 0, 0, 0.25);
+}
+
+.userFollowBtn:active,
+.userFollowBtnActive:active {
+  scale: 1.1;
 }
 
 .cardAvatar {

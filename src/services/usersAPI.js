@@ -1,26 +1,26 @@
-import axios from "axios";
+import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
-axios.defaults.baseURL = "https://6479a171a455e257fa6373c2.mockapi.io/";
+export const usersApi = createApi({
+  reducerPath: "users",
 
-export const fetchUsers = async () => {
-  const { data } = await axios.get("/users");
-  console.log(data);
-  return data;
-};
+  baseQuery: fetchBaseQuery({
+    baseUrl: "https://6479a171a455e257fa6373c2.mockapi.io/",
+  }),
+  tagTypes: ["Users"],
+  endpoints: (builder) => ({
+    getUsers: builder.query({
+      query: () => "/users",
+      providesTags: ["Users"],
+    }),
+    updateUsers: builder.mutation({
+      query: ({ id, isFollowed, followers }) => ({
+        url: `/users/${id}`,
+        method: "PUT",
+        body: { isFollowed, followers: followers + 1 },
+      }),
+      invalidatesTags: ["Users"],
+    }),
+  }),
+});
 
-export const followUser = async (id, followers) => {
-  const { data } = await axios.put(`/users/${id}`, {
-    isFollowed: true,
-    followers: followers + 1,
-  });
-
-  return data;
-};
-
-export const unFollowUser = async (id, followers) => {
-  const { data } = await axios.put(`/users/${id}`, {
-    isFollowed: false,
-    followers: followers - 1,
-  });
-  return data;
-};
+export const { useGetUsersQuery, useUpdateUsersMutation } = usersApi;

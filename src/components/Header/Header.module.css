@@ -1,0 +1,16 @@
+.header {
+  margin-left: auto;
+  margin-right: auto;
+  width: 600px;
+  background-color: #4895ef;
+  padding: 6px;
+  border-radius: 0 0 8px 8px;
+  margin-bottom: 16px;
+}
+
+.headerNav {
+  display: flex;
+  gap: 28px;
+  align-items: center;
+  justify-content: center;
+}

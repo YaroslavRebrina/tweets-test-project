@@ -1,0 +1,11 @@
+.tweetsContainer {
+  margin-left: auto;
+  margin-right: auto;
+  width: 1200px;
+
+  display: flex;
+  align-items: center;
+  gap: 30px;
+  flex-wrap: wrap;
+  padding: 30px;
+}

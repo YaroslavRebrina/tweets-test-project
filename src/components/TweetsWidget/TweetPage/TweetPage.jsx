@@ -1,53 +1,30 @@
-import { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
 import { TweetCard } from "./TweetCard/TweetCard";
-import { fetchUsers } from "services/usersAPI";
+
+import css from "./TweetPage.module.css";
+
+import { useGetUsersQuery } from "services/usersApi";
 
 export const TweetsPage = () => {
-  const [users, setUsers] = useState(null);
-  const [isNeedToRefetch, setIsNeedToRefetch] = useState(false);
-
-  // const willFetch =  || isNeedToRefetch;
-
-  useEffect(() => {
-    !users &&
-      fetchUsers()
-        .then((data) => {
-          setUsers(data);
-          setIsNeedToRefetch(false);
-          return;
-        })
-        .catch(console.log);
-  }, [users]);
-
-  useEffect(() => {
-    isNeedToRefetch &&
-      fetchUsers()
-        .then((data) => {
-          setUsers(data);
-          setIsNeedToRefetch(false);
-          return;
-        })
-        .catch(console.log);
-  }, [isNeedToRefetch]);
-
-  const updateUsers = () => {
-    setIsNeedToRefetch(true);
-  };
+  const { data } = useGetUsersQuery();
 
   return (
-    <div>
-      {users &&
-        users.map(({ id, tweets, followers, avatar, isFollowed }) => (
+    <div className={css.tweetsContainer}>
+      {data &&
+        data.map(({ id, tweets, followers, avatar, isFollowed }) => (
           <TweetCard
             tweets={tweets}
             followers={followers}
             avatar={avatar}
             isFollowed={isFollowed}
-            updateUsersHandler={updateUsers}
             id={id}
             key={id}
           />
         ))}
+
+      <button type="button" onClick={() => {}}>
+        Load more
+      </button>
     </div>
   );
 };
