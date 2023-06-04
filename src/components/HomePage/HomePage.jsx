@@ -23,7 +23,6 @@ export const HomePage = () => {
     return rand;
   }
 
-  console.log(user);
   return (
     <div className={css.homeContainer}>
       <h1 className={css.homeMainTitle}>Template of tweet card</h1>
