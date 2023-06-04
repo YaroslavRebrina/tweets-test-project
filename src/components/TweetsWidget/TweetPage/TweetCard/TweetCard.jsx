@@ -2,24 +2,21 @@ import LogoGoIt from "assets/svg/LogoGoIt";
 import TweetBackgroundCard from "assets/imgs/TweetCardBackground.png";
 import css from "../TweetCard/TweetCard.module.css";
 
-import { useUpdateUsersMutation } from "services/usersApi";
+import {
+  useFollowUserMutation,
+  useUnFollowUserMutation,
+} from "services/usersApi";
 
-export const TweetCard = ({
-  id,
-  tweets,
-  followers,
-  avatar,
-  isFollowed,
-  updateUsersHandler,
-}) => {
-  const [updateUsers] = useUpdateUsersMutation();
+export const TweetCard = ({ id, tweets, followers, avatar, isFollowed }) => {
+  const [unFollowUser] = useUnFollowUserMutation();
+  const [followUser] = useFollowUserMutation();
 
   const buttonOnClickUnfollow = async () => {
-    updateUsers({ id, isFollowed: false, followers });
+    unFollowUser({ id, isFollowed: false, followers });
   };
 
   const buttonOnClickFollow = async () => {
-    updateUsers({ id, isFollowed: true, followers });
+    followUser({ id, isFollowed: true, followers });
   };
 
   return (

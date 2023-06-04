@@ -12,7 +12,7 @@ export const usersApi = createApi({
       query: () => "/users",
       providesTags: ["Users"],
     }),
-    updateUsers: builder.mutation({
+    followUser: builder.mutation({
       query: ({ id, isFollowed, followers }) => ({
         url: `/users/${id}`,
         method: "PUT",
@@ -20,7 +20,24 @@ export const usersApi = createApi({
       }),
       invalidatesTags: ["Users"],
     }),
+    unFollowUser: builder.mutation({
+      query: ({ id, isFollowed, followers }) => ({
+        url: `/users/${id}`,
+        method: "PUT",
+        body: { isFollowed, followers: followers - 1 },
+      }),
+      invalidatesTags: ["Users"],
+    }),
+    getUsersWithPagination: builder.query({
+      query: ({ page, limit }) => `/users?p=${page}&l=${limit}`,
+      providesTags: ["Users"],
+    }),
   }),
 });
 
-export const { useGetUsersQuery, useUpdateUsersMutation } = usersApi;
+export const {
+  useGetUsersQuery,
+  useFollowUserMutation,
+  useUnFollowUserMutation,
+  useGetUsersWithPaginationQuery,
+} = usersApi;

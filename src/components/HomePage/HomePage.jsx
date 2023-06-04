@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { fetchOneUser } from "../../services/usersAPsI";
+import { fetchOneUser } from "../../services/usersAPI-deprecated";
 import { TweetCard } from "../TweetsWidget/TweetPage/TweetCard/TweetCard";
 import { Link } from "react-router-dom";
 
